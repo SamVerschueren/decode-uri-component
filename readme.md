@@ -5,6 +5,14 @@
 > A better [decodeURIComponent](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent)
 
 
+## Why?
+
+- Decodes `+` to a space.
+- Converts the [BOM](https://en.wikipedia.org/wiki/Byte_order_mark) to a [replacement character](https://en.wikipedia.org/wiki/Specials_(Unicode_block)#Replacement_character) `�`.
+- Does not throw with invalid encoded input.
+- Decodes as much of the string as possible.
+
+
 ## Install
 
 ```

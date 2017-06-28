@@ -1,8 +1,8 @@
 import test from 'ava';
-import m from '.';
+import m from './';
 
 const tests = {
-	test: 'test',
+	'test': 'test',
 	'a+b': 'a b',
 	'a+b+c+d': 'a b c d',
 	'=a': '=a',

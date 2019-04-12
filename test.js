@@ -35,8 +35,13 @@ const tests = {
 	'%%C2%B5%': '%µ%'
 };
 
-function macro(t, input, expected) {
-	t.is(m(input), expected);
+const plusSymbolTests = {
+	'a+b+c+d': 'a+b+c+d',
+	'%61+%4d%4D': 'a+MM'
+};
+
+function macro(t, options, input, expected) {
+	t.is(m(input, options), expected);
 }
 
 macro.title = (providedTitle, input, expected) => `${input} → ${expected}`;
@@ -46,5 +51,9 @@ test('type error', t => {
 });
 
 for (const input of Object.keys(tests)) {
-	test(macro, input, tests[input]);
+	test(macro, undefined, input, tests[input]);
+}
+
+for (const input of Object.keys(plusSymbolTests)) {
+	test(macro, {replacePlusForSpace: false}, input, plusSymbolTests[input]);
 }

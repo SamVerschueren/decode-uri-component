@@ -77,13 +77,25 @@ function customDecodeURIComponent(input) {
 	return input;
 }
 
-module.exports = function (encodedURI) {
+module.exports = function (encodedURI, options) {
+	var defaultOptions = {
+		replacePlusForSpace: true
+	};
+
+	if (options) {
+		options = Object.assign(defaultOptions, options);
+	} else {
+		options = defaultOptions;
+	}
+
 	if (typeof encodedURI !== 'string') {
 		throw new TypeError('Expected `encodedURI` to be of type `string`, got `' + typeof encodedURI + '`');
 	}
 
 	try {
-		encodedURI = encodedURI.replace(/\+/g, ' ');
+		if (options.replacePlusForSpace) {
+			encodedURI = encodedURI.replace(/\+/g, ' ');
+		}
 
 		// Try the built in decoder first
 		return decodeURIComponent(encodedURI);

@@ -56,7 +56,7 @@ decodeUriComponent('%C2%B5');
 
 ## API
 
-### decodeUriComponent(encodedURI)
+### decodeUriComponent(encodedURI, options)
 
 #### encodedURI
 
@@ -64,6 +64,18 @@ Type: `string`
 
 An encoded component of a Uniform Resource Identifier.
 
+#### options
+
+Type: `object`
+
+An object with options, posible values:
+
+##### replacePlusForSpace
+
+Type: `boolean`
+default: `true`
+
+Wether or not to replace `+` for ` `.
 
 ## License
 

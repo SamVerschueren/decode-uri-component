@@ -30,9 +30,14 @@ function decode(input) {
 	} catch (err) {
 		var tokens = input.match(singleMatcher);
 
-		for (var i = 1; i < tokens.length; i++) {
-			input = decodeComponents(tokens, i).join('');
+		for (var i = 1; tokens && i < tokens.length; i++) {
 
+			// sometimes decoded is a string and not array, but why?  
+			// this just address the "vulnerable to Denial of Service (DoS) - https://github.com/advisories/GHSA-w573-4hg7-7wgq"
+			
+      			const decoded = decodeComponents(tokens, i)      			
+			input = Array.isArray(decoded) ? decoded.join('') : decoded
+			
 			tokens = input.match(singleMatcher);
 		}
 

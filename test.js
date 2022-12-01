@@ -32,7 +32,10 @@ const tests = {
 	'%C2x': '\uFFFDx',
 	'%C2%B5': 'µ',
 	'%C2%B5%': 'µ%',
-	'%%C2%B5%': '%µ%'
+	'%%C2%B5%': '%µ%',
+
+	// This should actually return `%ea%baZ%ba`, but fixes a DOS attack for now
+	'%ea%ba%5a%ba': '꺺'
 };
 
 function macro(t, input, expected) {

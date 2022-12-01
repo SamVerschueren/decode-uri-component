@@ -1,6 +1,6 @@
 # decode-uri-component
 
-[![Build Status](https://travis-ci.org/SamVerschueren/decode-uri-component.svg?branch=master)](https://travis-ci.org/SamVerschueren/decode-uri-component) [![Coverage Status](https://coveralls.io/repos/SamVerschueren/decode-uri-component/badge.svg?branch=master&service=github)](https://coveralls.io/github/SamVerschueren/decode-uri-component?branch=master)
+![CI](https://github.com/SamVerschueren/decode-uri-component/workflows/CI/badge.svg) [![Coverage Status](https://coveralls.io/repos/SamVerschueren/decode-uri-component/badge.svg?branch=master&service=github)](https://coveralls.io/github/SamVerschueren/decode-uri-component?branch=master)
 
 > A better [decodeURIComponent](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent)
 

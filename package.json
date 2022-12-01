@@ -1,6 +1,6 @@
 {
 	"name": "decode-uri-component",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"description": "A better decodeURIComponent",
 	"license": "MIT",
 	"repository": "SamVerschueren/decode-uri-component",

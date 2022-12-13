@@ -1,5 +1,5 @@
 import test from 'ava';
-import m from './';
+import m from './index.mjs';
 
 const tests = {
 	'test': 'test',
@@ -45,7 +45,7 @@ function macro(t, input, expected) {
 macro.title = (providedTitle, input, expected) => `${input} → ${expected}`;
 
 test('type error', t => {
-	t.throws(() => m(5), 'Expected `encodedURI` to be of type `string`, got `number`');
+	t.throws(() => m(5), {message: 'Expected `encodedURI` to be of type `string`, got `number`'});
 });
 
 for (const input of Object.keys(tests)) {

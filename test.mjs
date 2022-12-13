@@ -2,7 +2,7 @@ import test from 'ava';
 import m from './index.mjs';
 
 const tests = {
-	'test': 'test',
+	test: 'test',
 	'a+b': 'a b',
 	'a+b+c+d': 'a b c d',
 	'=a': '=a',
@@ -35,7 +35,7 @@ const tests = {
 	'%%C2%B5%': '%µ%',
 	'%ea%ba%5a%ba': '%ea%baZ%ba',
 	'%C3%5A%A5': '%C3Z%A5',
-	'%C3%5A%A5%AB': '%C3Z%A5%AB'
+	'%C3%5A%A5%AB': '%C3Z%A5%AB',
 };
 
 function macro(t, input, expected) {

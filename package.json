@@ -10,7 +10,7 @@
 		"url": "github.com/SamVerschueren"
 	},
 	"engines": {
-		"node": ">=0.10"
+		"node": ">=4.0.0"
 	},
 	"scripts": {
 		"test": "xo && nyc ava",
@@ -29,9 +29,9 @@
 		"url"
 	],
 	"devDependencies": {
-		"ava": "^0.17.0",
-		"coveralls": "^2.13.1",
-		"nyc": "^10.3.2",
-		"xo": "^0.16.0"
+		"ava": "^5.1.0",
+		"coveralls": "^3.1.1",
+		"nyc": "^15.1.0",
+		"xo": "^0.53.1"
 	}
 }

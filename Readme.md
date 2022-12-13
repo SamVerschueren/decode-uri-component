@@ -24,7 +24,7 @@ decodeUriComponent('st%C3%A5le');
 
 decodeUriComponent('%st%C3%A5le%');
 //=> '%ståle%'
-
+ 
 decodeUriComponent('%%7Bst%C3%A5le%7D%');
 //=> '%{ståle}%'
 

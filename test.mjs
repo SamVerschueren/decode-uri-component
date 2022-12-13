@@ -21,7 +21,7 @@ const tests = {
 	'%ab': '%ab',
 	'%ab%ab%ab': '%ab%ab%ab',
 	'%61+%4d%4D': 'a MM',
-	'\uFEFFtest': '\uFEFFtest',
+	'\uFEFFtest2': '\uFEFFtest2',
 	'\uFEFF': '\uFEFF',
 	'%EF%BB%BFtest': '\uFEFFtest',
 	'%EF%BB%BF': '\uFEFF',

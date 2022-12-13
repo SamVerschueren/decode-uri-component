@@ -17,7 +17,7 @@
 		"coveralls": "nyc report --reporter=text-lcov | coveralls"
 	},
 	"files": [
-		"index.js"
+		"index.mjs"
 	],
 	"keywords": [
 		"decode",

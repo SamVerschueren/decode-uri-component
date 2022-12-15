@@ -1,5 +1,5 @@
 import test from 'ava';
-import m from './index.mjs';
+import m from './index.js';
 
 const tests = {
 	test: 'test',

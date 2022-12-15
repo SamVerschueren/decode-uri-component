@@ -1,4 +1,4 @@
-/* eslint-disable unicorn/prefer-optional-catch-binding,no-unused-vars,import/no-anonymous-default-export */
+/* eslint-disable import/no-anonymous-default-export */
 
 const token = '%[a-f0-9]{2}';
 const singleMatcher = new RegExp('(' + token + ')|([^%]+?)', 'gi');
@@ -8,7 +8,7 @@ function decodeComponents(components, split) {
 	try {
 		// Try to decode the entire string first
 		return [decodeURIComponent(components.join(''))];
-	} catch (error) {
+	} catch {
 		// Do nothing
 	}
 
@@ -28,7 +28,7 @@ function decodeComponents(components, split) {
 function decode(input) {
 	try {
 		return decodeURIComponent(input);
-	} catch (error) {
+	} catch {
 		let tokens = input.match(singleMatcher) || [];
 
 		for (let i = 1; i < tokens.length; i++) {
@@ -53,7 +53,7 @@ function customDecodeURIComponent(input) {
 		try {
 			// Decode as big chunks as possible
 			replaceMap[match[0]] = decodeURIComponent(match[0]);
-		} catch (error) {
+		} catch {
 			const result = decode(match[0]);
 
 			if (result !== match[0]) {
@@ -87,7 +87,7 @@ export default function (encodedURI) {
 
 		// Try the built in decoder first
 		return decodeURIComponent(encodedURI);
-	} catch (error) {
+	} catch {
 		// Fallback to a more advanced decoder
 		return customDecodeURIComponent(encodedURI);
 	}

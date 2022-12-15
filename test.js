@@ -3,8 +3,8 @@ import m from './index.js';
 
 const tests = {
 	test: 'test',
-	'a+b': 'a b',
-	'a+b+c+d': 'a b c d',
+	'a+b': 'a+b',
+	'a+b+c+d': 'a+b+c+d',
 	'=a': '=a',
 	'%': '%',
 	'%25': '%',
@@ -20,7 +20,7 @@ const tests = {
 	'%7 B%ab%%7C%de%%7 D': '%7 B%ab%|%de%%7 D',
 	'%ab': '%ab',
 	'%ab%ab%ab': '%ab%ab%ab',
-	'%61+%4d%4D': 'a MM',
+	'%61+%4d%4D': 'a+MM',
 	'\uFEFFtest2': '\uFEFFtest2',
 	'\uFEFF': '\uFEFF',
 	'%EF%BB%BFtest': '\uFEFFtest',

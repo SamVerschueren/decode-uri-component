@@ -81,8 +81,6 @@ export default function decodeUriComponent(encodedURI) {
 	}
 
 	try {
-		encodedURI = encodedURI.replace(/\+/g, ' ');
-
 		// Try the built in decoder first
 		return decodeURIComponent(encodedURI);
 	} catch {

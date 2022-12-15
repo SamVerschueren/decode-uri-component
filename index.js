@@ -1,5 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
-
 const token = '%[a-f0-9]{2}';
 const singleMatcher = new RegExp('(' + token + ')|([^%]+?)', 'gi');
 const multiMatcher = new RegExp('(' + token + ')+', 'gi');
@@ -77,7 +75,7 @@ function customDecodeURIComponent(input) {
 	return input;
 }
 
-export default function (encodedURI) {
+export default function decodeUriComponent(encodedURI) {
 	if (typeof encodedURI !== 'string') {
 		throw new TypeError('Expected `encodedURI` to be of type `string`, got `' + typeof encodedURI + '`');
 	}

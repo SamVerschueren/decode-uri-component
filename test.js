@@ -1,8 +1,8 @@
 import test from 'ava';
-import m from './';
+import m from './index.js';
 
 const tests = {
-	'test': 'test',
+	test: 'test',
 	'a+b': 'a+b',
 	'a+b+c+d': 'a+b+c+d',
 	'=a': '=a',
@@ -21,7 +21,7 @@ const tests = {
 	'%ab': '%ab',
 	'%ab%ab%ab': '%ab%ab%ab',
 	'%61+%4d%4D': 'a+MM',
-	'\uFEFFtest': '\uFEFFtest',
+	'\uFEFFtest2': '\uFEFFtest2',
 	'\uFEFF': '\uFEFF',
 	'%EF%BB%BFtest': '\uFEFFtest',
 	'%EF%BB%BF': '\uFEFF',
@@ -35,7 +35,7 @@ const tests = {
 	'%%C2%B5%': '%µ%',
 	'%ea%ba%5a%ba': '%ea%baZ%ba',
 	'%C3%5A%A5': '%C3Z%A5',
-	'%C3%5A%A5%AB': '%C3Z%A5%AB'
+	'%C3%5A%A5%AB': '%C3Z%A5%AB',
 };
 
 function macro(t, input, expected) {
@@ -45,7 +45,7 @@ function macro(t, input, expected) {
 macro.title = (providedTitle, input, expected) => `${input} → ${expected}`;
 
 test('type error', t => {
-	t.throws(() => m(5), 'Expected `encodedURI` to be of type `string`, got `number`');
+	t.throws(() => m(5), {message: 'Expected `encodedURI` to be of type `string`, got `number`'});
 });
 
 for (const input of Object.keys(tests)) {

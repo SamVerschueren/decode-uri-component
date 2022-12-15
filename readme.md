@@ -23,7 +23,7 @@ $ npm install --save decode-uri-component
 ## Usage
 
 ```js
-const decodeUriComponent = require('decode-uri-component');
+import decodeUriComponent from 'decode-uri-component';
 
 decodeUriComponent('%25');
 //=> '%'

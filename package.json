@@ -9,19 +9,21 @@
 		"email": "sam.verschueren@gmail.com",
 		"url": "github.com/SamVerschueren"
 	},
+	"type": "module",
+	"exports": {
+		"types": "./index.d.ts",
+		"default": "./index.js"
+	},
 	"engines": {
 		"node": ">=14.16"
 	},
 	"scripts": {
-		"test": "xo && nyc ava",
+		"test": "xo && nyc ava && tsd",
 		"coveralls": "nyc report --reporter=text-lcov | coveralls"
 	},
-	"type": "module",
-	"exports": {
-		"default": "./index.js"
-	},
 	"files": [
-		"index.js"
+		"index.js",
+		"index.d.ts"
 	],
 	"keywords": [
 		"decode",
@@ -36,6 +38,12 @@
 		"ava": "^5.1.0",
 		"coveralls": "^3.1.1",
 		"nyc": "^15.1.0",
+		"tsd": "^0.25.0",
 		"xo": "^0.53.1"
+	},
+	"tsd": {
+		"compilerOptions": {
+			"module": "node16"
+		}
 	}
 }

@@ -4,6 +4,7 @@
 	"description": "A better decodeURIComponent",
 	"license": "MIT",
 	"repository": "SamVerschueren/decode-uri-component",
+	"sideEffects": false,
 	"author": {
 		"name": "Sam Verschueren",
 		"email": "sam.verschueren@gmail.com",

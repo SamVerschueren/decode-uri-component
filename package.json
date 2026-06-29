@@ -42,6 +42,9 @@
 		"tsd": "^0.25.0",
 		"xo": "^0.53.1"
 	},
+	"overrides": {
+		"eslint": "8.39.0"
+	},
 	"tsd": {
 		"compilerOptions": {
 			"module": "node16"

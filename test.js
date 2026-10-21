@@ -1,5 +1,43 @@
+import {execFileSync} from 'node:child_process';
+import process from 'node:process';
 import test from 'ava';
 import m from './index.js';
+
+test('inserts decoded text literally without another decoding pass', t => {
+	const cases = {
+		'%24%26-%ab': '$&-%ab',
+		'%24%60-%ab': '$`-%ab',
+		'%24%27-%ab': '$\'-%ab',
+		'%24%24-%ab': '$$-%ab',
+		'%25%34%31-%41-%ab': '%41-A-%ab',
+		'%25%43%32-%C2': '%C2-\uFFFD',
+		'%25%46%45%25%46%46-%FE%FF': '%FE%FF-\uFFFD\uFFFD',
+		'%FE%FF%C2': '\uFFFD\uFFFD\uFFFD',
+		'%FF%FE%41%C2': '\uFFFD\uFFFDA\uFFFD',
+		'%fe%ff%C2': '%fe%ff\uFFFD',
+	};
+
+	for (const [input, expected] of Object.entries(cases)) {
+		t.is(m(input), expected);
+	}
+});
+
+test('bounds malformed input with many distinct valid runs', t => {
+	const result = execFileSync(process.execPath, [
+		'--input-type=module',
+		'-e',
+		`const {default: decode} = await import(process.argv[1]);
+const words = Array.from({length: 60000}, (_, index) => 'v' + index);
+const encoded = words.map(word => Array.from(word, character => '%' + character.charCodeAt(0).toString(16)).join('')).join('-');
+if (decode(encoded + '-%ab') !== words.join('-') + '-%ab') process.exit(1);
+if (decode('%ab'.repeat(20000) + '%41') !== '%ab'.repeat(20000) + 'A') process.exit(1);
+if (decode('%41'.repeat(20000) + '%') !== 'A'.repeat(20000) + '%') process.exit(1);
+process.stdout.write('decoded');`,
+		new URL('index.js', import.meta.url).href,
+	], {encoding: 'utf8', timeout: 3000, maxBuffer: 1024});
+
+	t.is(result, 'decoded');
+});
 
 const tests = {
 	test: 'test',

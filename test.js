@@ -179,11 +179,15 @@ const mixedSequenceTests = {
 const bomContextTests = {
 	'a%FE%FFb': 'a\uFFFD\uFFFDb',
 	'%FE%FF%FE%FF': '\uFFFD\uFFFD\uFFFD\uFFFD',
+	'%41%FE%FF': 'A\uFFFD\uFFFD',
 };
 
 // Single-pass decoding (one level per call, not recursive).
 const doubleEncodingTests = {
 	'%252525': '%2525',
+	// Malformed tail forces the fallback decoder; decoded output must not be decoded again.
+	'%25C2%zz': '%C2%zz',
+	'%25%41%zz': '%A%zz',
 };
 
 // Additional edge cases.
@@ -242,6 +246,24 @@ for (const [title, [value, type]] of Object.entries(invalidTypes)) {
 test('decodes one level per call', t => {
 	t.is(m('%2525'), '%25');
 	t.is(m('%25'), '%');
+});
+
+test('many distinct percent-encoded runs decode in linear time', t => {
+	let input = '';
+
+	for (let index = 0; index < 32_000; index++) {
+		const high = Math.floor(index / 256).toString(16).padStart(2, '0');
+		const low = (index % 256).toString(16).padStart(2, '0');
+		input += `%${high}%${low}x`;
+	}
+
+	input += '%zz';
+
+	const start = Date.now();
+	m(input);
+
+	// Linear decoding takes tens of milliseconds; the old quadratic replace loop took ~20s.
+	t.true(Date.now() - start < 1000);
 });
 
 test('idempotent when no percent-encoding remains', t => {
